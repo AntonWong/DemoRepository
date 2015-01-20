@@ -9,9 +9,9 @@ namespace WebService.Controllers
     public class TestController : ApiController
     {
 
-        public object Get()
+        public A Get()
         {
-            return new {id=1,name="wong"};
+            return new A { Id = 1, Name = "wong" };
         }
         //public HttpResponseMessage Get()
         //{
@@ -41,5 +41,13 @@ namespace WebService.Controllers
                 Content = new StringContent("PUT: Test message")
             };
         }
+
+
+    }
+
+    public class A
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

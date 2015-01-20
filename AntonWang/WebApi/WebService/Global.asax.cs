@@ -12,7 +12,11 @@ namespace WebService
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configuration.Formatters.Insert(0, new JsonpMediaTypeFormatter());
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+           
+           // GlobalConfiguration.Configuration.Filters.Add(new JsonCallbackAttribute());
         }
     }
 }
