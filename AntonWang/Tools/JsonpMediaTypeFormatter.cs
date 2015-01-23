@@ -7,8 +7,11 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace WebService.App_Start
+namespace Tools
 {
+    /// <summary>
+    /// 跨域结果处理
+    /// </summary>
     public class JsonpMediaTypeFormatter : JsonMediaTypeFormatter
     {
 

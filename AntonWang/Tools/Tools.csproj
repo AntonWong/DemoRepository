@@ -80,6 +80,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MetaWeblogAPI\Structs.cs" />
+    <Compile Include="OperationResult.cs" />
+    <Compile Include="OperationResultType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
