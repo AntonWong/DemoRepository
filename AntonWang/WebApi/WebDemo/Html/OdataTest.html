@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../Javascript/jquery-1.10.2.min.js"></script>
+    <script>
+        
+        $.ajax({
+            //提交数据的类型 POST GET
+            type: "POST",
+            //提交的网址
+            url: "http://localhost:16007/Products(1)/ProductService.Rate",
+            //提交的数据
+            data: { Rating: 345, Password: "sanmaoword" },
+            //返回数据的格式
+            datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+            //在请求之前调用的函数
+          //  beforeSend: function () { $("#msg").html("logining"); },
+            //成功返回之后调用的函数            
+            success: function (data) {
+                $("#msg").html(decodeURI(data));
+            },
+            //调用执行后调用的函数
+            complete: function (XMLHttpRequest, textStatus) {
+                alert(XMLHttpRequest.responseText);
+                alert(textStatus);
+                //HideLoading();
+            },
+            //调用出错执行的函数
+            error: function () {
+                //请求出错处理
+            }
+        });
+        
+        //$.post(
+        //    "http://localhost:16007/Products(1)/ProductService.Rate",
+        //    {"UserName":"sewew","Rating":123},
+        //    function(data) {
+        //        alert(data);
+        //    }
+        //);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
