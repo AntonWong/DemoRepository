@@ -8,6 +8,9 @@ using MeetingRoomModel.Models.Enum;
 
 namespace MeetingRoomModel.Migrations
 {
+    /*
+     * «®“∆√¸¡Ó£∫add-migration addmodels , update-database
+     */
     internal sealed class Configuration : DbMigrationsConfiguration<MeetingDbContext>
     {
         public Configuration()
