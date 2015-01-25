@@ -17,10 +17,11 @@
             alert(PostResponse);
             // PostResponse
         }
-        //$.getJSON("http://localhost:5071/api/CrossDomain/Get?userName=123&password=456&callback=?", function (data) {
-        //        alert(data.UserName);
-        //    });
-
+        $.getJSON("http://localhost:5071/api/CrossDomain/Get?userName=123&password=456&callback=?", function (data) {
+                alert(data.UserName);
+            });
+        jQuery110208602787363158169_1422194794549({ "UserName": "123", "PassWord": "456" })
+        jQuery110202491835089196618_1422195064341({ "UserName": "123", "PassWord": "456" })
 
         //$.get("http://localhost:5071/api/CrossDomain/Get?userName=123&password=456&callback=?", function (data) {
         //    alert(data);
