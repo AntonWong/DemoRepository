@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../Javascript/jquery-1.10.2.min.js"></script>
+</head>
+    <body>
+        <div>
+            <br />
+            <select id="method">
+                <option value="get">GET</option>
+                <option value="post">POST</option>
+                <option value="put">PUT</option>
+            </select>
+            <input type="button" value="Try it" onclick="sendRequest()" />
+            <span id='value1'>(Result)</span>
+        </div>
+
+    </body>
+<script>
+    // TODO: Replace with the URL of your WebService app
+    var serviceUrl = 'http://localhost:3557/api/test/';
+
+    function sendRequest() {
+        var method = $('#method').val();
+        $.ajax({
+            type: method,
+            url: serviceUrl + method
+        }).done(function (data) {
+            $('#value1').text(data.name);
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            $('#value1').text(jqXHR.responseText || textStatus);
+        });
+    }
+</script>
+
+</html>

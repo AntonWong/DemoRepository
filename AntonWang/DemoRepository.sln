@@ -28,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Éè¼ÆÄ£Ê½", "FrameDesign\Éè¼
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "FrameDesign\ConsoleApplication\ConsoleApplication.csproj", "{8F61E770-BCBF-437C-B18F-F977B17DB8CC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Component", "Component", "{7F7308EA-7356-4991-99A3-EC153EB536B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginMvc.Framework", "Component\PluginMvc.Framework\PluginMvc.Framework.csproj", "{A9C398A6-E41A-4C34-9FCE-6B7982FB53CA}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -74,6 +78,10 @@ Global
 		{8F61E770-BCBF-437C-B18F-F977B17DB8CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F61E770-BCBF-437C-B18F-F977B17DB8CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F61E770-BCBF-437C-B18F-F977B17DB8CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9C398A6-E41A-4C34-9FCE-6B7982FB53CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9C398A6-E41A-4C34-9FCE-6B7982FB53CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9C398A6-E41A-4C34-9FCE-6B7982FB53CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9C398A6-E41A-4C34-9FCE-6B7982FB53CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,5 +94,6 @@ Global
 		{FA5DFF38-C7B5-46AF-AA87-D210C2BE56AB} = {0E006B73-083A-47D5-9017-0E0DCDEF889B}
 		{7972D473-6B9C-4163-AB3C-949CA88A1215} = {91E71E09-4EA7-4E26-ABE3-C52FC1768657}
 		{8F61E770-BCBF-437C-B18F-F977B17DB8CC} = {91E71E09-4EA7-4E26-ABE3-C52FC1768657}
+		{A9C398A6-E41A-4C34-9FCE-6B7982FB53CA} = {7F7308EA-7356-4991-99A3-EC153EB536B6}
 	EndGlobalSection
 EndGlobal

@@ -71,6 +71,7 @@ FlashHelper.checkFlash = function () {
 }
 
 FlashHelper.writeFlash = function () {
+     
     var swfName = "/Javascript/ajaxcdr.swf";
 
     if (window.ActiveXObject && !FlashHelper.isFlashInstalled()) {
@@ -312,6 +313,7 @@ function PostRequest(url, method, isFormurlencoded, responseParam, callback) {
         if (isjson) {
             responseParam = JSON.stringify(responseParam);
         }
+       
         fs.XmlHttp(url, "displayResponse", method, responseParam, "application/json; charset=utf-8");
         return;
     }

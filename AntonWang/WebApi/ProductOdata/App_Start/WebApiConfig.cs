@@ -1,4 +1,5 @@
 ﻿
+using System.Net.Http.Formatting;
 using ProductOdata.Models;
 using System.Web.Http;
 using System.Web.OData.Builder;
@@ -27,6 +28,7 @@ namespace ProductOdata
                 .Action("Rate")
                 .Parameter<int>("Rating");
 
+            config.Formatters.JsonFormatter.AddQueryStringMapping("$format", "json", "application/json"); 
         }
     }
 }

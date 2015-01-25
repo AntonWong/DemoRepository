@@ -124,6 +124,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Javascript\ajaxcdr.js" />
+    <Content Include="Javascript\ajaxcdr.swf" />
+    <Content Include="Javascript\jquery-1.10.2.min.js" />
     <Content Include="Read.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -142,6 +145,10 @@
     <Compile Include="Migrations\201501230846047_addtale1.cs" />
     <Compile Include="Migrations\201501230846047_addtale1.Designer.cs">
       <DependentUpon>201501230846047_addtale1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501241059083_add.cs" />
+    <Compile Include="Migrations\201501241059083_add.Designer.cs">
+      <DependentUpon>201501241059083_add.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Product.cs" />
@@ -169,6 +176,15 @@
     <EmbeddedResource Include="Migrations\201501230846047_addtale1.resx">
       <DependentUpon>201501230846047_addtale1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501241059083_add.resx">
+      <DependentUpon>201501241059083_add.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tools\Tools.csproj">
+      <Project>{84A3E816-7AF4-4860-80FC-412607502BAC}</Project>
+      <Name>Tools</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

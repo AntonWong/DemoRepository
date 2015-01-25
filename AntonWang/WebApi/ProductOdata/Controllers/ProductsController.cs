@@ -27,6 +27,8 @@ namespace ProductOdata.Controllers
         {
             return db.Products;
         }
+
+
         [EnableQuery]
         public SingleResult<Product> Get([FromODataUri] int key)
         {
@@ -40,6 +42,12 @@ namespace ProductOdata.Controllers
         {
             var result = db.Products.Where(m => m.Id == key).Select(m => m.Supplier);
             return SingleResult.Create(result);
+        }
+
+        public HttpResponseMessage Post(Product product)
+        {
+            OperationResult result = new OperationResult(OperationResultType.Success, "message");
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [AcceptVerbs("POST", "PUT")]
@@ -73,52 +81,54 @@ namespace ProductOdata.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Rate([FromODataUri] int key)
+        public HttpResponseMessage Rate([FromODataUri] int key)
         {
             var data = HttpContext.Current.Request.Form;
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                //return BadRequest();
             }
-
+             OperationResult result = new OperationResult(OperationResultType.Success,"message");
+             return Request.CreateResponse(HttpStatusCode.OK, result);
+            //return new HttpResponseMessage(HttpStatusCode.OK,result);
             //int rating = (int)parameters["Rating"];
-            db.Ratings.Add(new ProductRating
-            {
-                ProductID = key,
-              //  Rating = rating
-            });
+            //db.Ratings.Add(new ProductRating
+            //{
+            //    ProductID = key,
+            //  //  Rating = rating
+            //});
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException e)
-            {
-                if (!ProductExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //try
+            //{
+            //    await db.SaveChangesAsync();
+            //}
+            //catch (DbUpdateException e)
+            //{
+            //    if (!ProductExists(key))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
-            return StatusCode(HttpStatusCode.NoContent);
+            //return StatusCode(HttpStatusCode.NoContent);
         }
 
 
 
-        public async Task<IHttpActionResult> Post(Product product)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            db.Products.Add(product);
-            await db.SaveChangesAsync();
-            return Created(product);
-        }
+        //public async Task<IHttpActionResult> Post(Product product)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    db.Products.Add(product);
+        //    await db.SaveChangesAsync();
+        //    return Created(product);
+        //}
         public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Product> product)
         {
             if (!ModelState.IsValid)
