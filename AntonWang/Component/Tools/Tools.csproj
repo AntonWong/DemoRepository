@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CookComputing.XmlRpc">
-      <HintPath>..\DLL\CookComputing.XmlRpc.dll</HintPath>
+      <HintPath>..\..\DLL\CookComputing.XmlRpc.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
