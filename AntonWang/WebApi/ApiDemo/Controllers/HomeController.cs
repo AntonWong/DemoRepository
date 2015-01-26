@@ -11,8 +11,15 @@ namespace ApiDemo.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
             return View();
         }
+
+        public ActionResult AntiCSRF()
+        {
+            ViewBag.Title = "AntiCSRF Page";
+            return View();
+        }
+
+
     }
 }
