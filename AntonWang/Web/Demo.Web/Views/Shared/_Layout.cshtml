@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+         @RenderSection("title",false)
+        <link href="~/javascript/bootstrap/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/javascript/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        @RenderBody()
+
+    </body>
+    <script src="~/javascript/jquery-1.10.2.min.js"></script>
+    <script src="~/javascript/bootstrap/bootstrap.min.js"></script>
+    <script src="~/javascript/knockout/knockout-3.2.0.js"></script>
+    <script src="~/javascript/knockout/knockout.validation.js"></script>
+    <script src="~/Javascript/base.js"></script>
+    @RenderSection("script",false)
+</html>

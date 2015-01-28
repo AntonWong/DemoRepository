@@ -1,0 +1,22 @@
+﻿
+@section title{<title>列表</title>}
+
+@section script
+{
+    <script>
+        //$.get(apiUri + "Products(1)", function(data) {
+        //    alert(data);
+        //})
+
+       // $.getJSON(apiUri + "Products?callback=?", function (data) { alert(data); });
+        $.ajax({
+            type:"Post",
+            url: apiUri + "Test/get"
+        }).done(function (data) {
+            //$('#value1').text(data.name);
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            //$('#value1').text(jqXHR.responseText || textStatus);
+        });
+
+    </script>
+}
