@@ -1,7 +1,7 @@
 ﻿@section title{<title>供应商列表</title>}
 <div style="margin:10px;">
-   供应商名称： 
-    @*<input id="name" type="text" class="span2 search-query">*@
+    供应商名称：
+    <input id="name" type="text" class="span2 search-query">
     <button id="sreachBtn" type="submit" class="btn">搜索</button>
 </div>
 <table class="table table-hover">
@@ -9,10 +9,10 @@
         <tr>
             <th>ID</th>
             <th>类别</th>
-            <td>操作</td>
+            <th>操作</th>
         </tr>
     </thead>
-    <tbody data-bind="foreach:products">
+    <tbody data-bind="foreach:oProds">
         <tr>
             <td data-bind="text: Id"></td>
             <td data-bind="text: Name"></td>
@@ -25,56 +25,58 @@
 @section script
 {
     <script>
+
+        var searchUrl = apiUri + "Suppliers";
+        //宣告一个ProdsData的JSON对象数组变量
+        var ProdsData = [];
+        //宣告一个vmProd的JSON变量
+        var vmProd = {
+            //宣告有个别名为oProds的子对象，指向ko.observableArray(ProodsData)
+            oProds: ko.observableArray(ProdsData),
+            edit: function(Supplier) {
+                window.location.href = '/Knockout/Supplier/Edit?id =' + Supplier.Id
+            },
+            remove: function(Supplier) {
+                $.ajax({
+                    type: "delete",
+                    url: apiUri + "Suppliers(" + Supplier.Id + ")"
+                }).done(function(data) {
+                    location.reload();
+                }).error(function(jqXHR, textStatus, errorThrown) {
+                    alert(eval("(" + jqXHR.responseText + ")").error.message);
+                })
+            }
+        }
+        //绑定ViewModel(vm)
+        ko.applyBindings(vmProd);
+        //加载列表
         loadList();
-    function ViewModel(data) {
-        var self = this;
-        self.products = ko.observableArray(data);//添加动态监视数组对象
-        //删除
-        self.remove = function (Supplier) {
+
+        function loadList() {
+            var requestUrl = searchUrl;
+            //var PageSize = 2; var PageIndex = 1; var skipNum = (PageIndex - 1) * PageSize;
+            var name = $("#name").val().trim();
+            if (name != '') {
+                requestUrl = searchUrl + "?$filter=Name eq '" + name + "'";
+            }
             $.ajax({
-                type: "delete",
-                url: apiUri + "Suppliers(" + Supplier.Id+ ")"
-            }).done(function (data) {
-                location.reload();
-                //var vm = new ViewModel(data.value);
-                ko.applyBindings(vm);
-            }).error(function (jqXHR, textStatus, errorThrown) {
+                type: "GET",
+                url: requestUrl
+            }).done(function(data) {
+                vmProd.oProds(data.value);
+            }).error(function(jqXHR) {
                 alert(eval("(" + jqXHR.responseText + ")").error.message);
             });
+            //$.get(strURL, null, function (oProdsData, status, xhr) {
+            //    //将取得的对象及合，指定到ViewModel中的oProds别名
+            //    //(ViewModel中，将从震裂取得资料，转给oProds)
+            //    vmProd.oProds(oProdsData);
+            //});
         }
-        //编辑
-        self.edit = function (Supplier) {
-            window.location.href = '/Knockout/Supplier/Edit?id ='+ Supplier.Id
-        };
-        //self.Count = ko.computed(function () {
-        //    return self.students().length;
-        //});
-       
-    }
 
-    //列表
-    function loadList()
-    {
-        var searchUrl = apiUri + "Suppliers";
-        //var name = $("#name").val().trim();
-        //if(name !='')
-        //{
-        //    searchUrl = searchUrl + "?$filter=Name eq '" + name + "'";
-        //}
-        $.ajax({
-            type: "GET",
-            url: searchUrl
-        }).done(function (data) {
-            var vm = new ViewModel(data.value);
-            ko.applyBindings(vm);
-        }).error(function (jqXHR, textStatus, errorThrown) {
-            $('#value1').text(jqXHR.responseText || textStatus);
-        });
-    }
-    $("#sreachBtn").click(function () {
-        loadList();
-    })
-    
-
+        $("#sreachBtn").click(function () {
+            loadList();
+        })
+         
     </script>
 }
