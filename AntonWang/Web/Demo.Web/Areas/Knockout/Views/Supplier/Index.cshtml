@@ -1,0 +1,80 @@
+﻿@section title{<title>供应商列表</title>}
+<div style="margin:10px;">
+   供应商名称： 
+    @*<input id="name" type="text" class="span2 search-query">*@
+    <button id="sreachBtn" type="submit" class="btn">搜索</button>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>类别</th>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach:products">
+        <tr>
+            <td data-bind="text: Id"></td>
+            <td data-bind="text: Name"></td>
+            <td>
+                <a href="javascript:" data-bind="click:$root.edit">修改</a> / <a href="javascript:" data-bind="click:$root.remove">删除</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+@section script
+{
+    <script>
+        loadList();
+    function ViewModel(data) {
+        var self = this;
+        self.products = ko.observableArray(data);//添加动态监视数组对象
+        //删除
+        self.remove = function (Supplier) {
+            $.ajax({
+                type: "delete",
+                url: apiUri + "Suppliers(" + Supplier.Id+ ")"
+            }).done(function (data) {
+                location.reload();
+                //var vm = new ViewModel(data.value);
+                ko.applyBindings(vm);
+            }).error(function (jqXHR, textStatus, errorThrown) {
+                alert(eval("(" + jqXHR.responseText + ")").error.message);
+            });
+        }
+        //编辑
+        self.edit = function (Supplier) {
+            window.location.href = '/Knockout/Supplier/Edit?id ='+ Supplier.Id
+        };
+        //self.Count = ko.computed(function () {
+        //    return self.students().length;
+        //});
+       
+    }
+
+    //列表
+    function loadList()
+    {
+        var searchUrl = apiUri + "Suppliers";
+        //var name = $("#name").val().trim();
+        //if(name !='')
+        //{
+        //    searchUrl = searchUrl + "?$filter=Name eq '" + name + "'";
+        //}
+        $.ajax({
+            type: "GET",
+            url: searchUrl
+        }).done(function (data) {
+            var vm = new ViewModel(data.value);
+            ko.applyBindings(vm);
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            $('#value1').text(jqXHR.responseText || textStatus);
+        });
+    }
+    $("#sreachBtn").click(function () {
+        loadList();
+    })
+    
+
+    </script>
+}
