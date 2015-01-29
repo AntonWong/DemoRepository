@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ProductOdata.Models
+namespace OdataService.Models
 {
     public class Supplier
     {

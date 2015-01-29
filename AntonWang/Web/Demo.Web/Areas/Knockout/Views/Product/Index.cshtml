@@ -1,14 +1,16 @@
-﻿@section title{<title>供应商列表</title>}
+﻿@section title{<title>产品列表</title>}
 <div style="margin:10px;">
-    供应商名称：
-    <input id="name" type="text" class="span2 search-query">
+    供应商名称：<input id="supplierName" type="text" class="span2 search-query">  
+    产品名称：<input id="productName" type="text" class="span2 search-query"> 
     <button id="sreachBtn" type="submit" class="btn">搜索</button>
 </div>
 <table class="table table-hover">
     <thead>
         <tr>
             <th>ID</th>
-            <th>类别</th>
+            <th>产品名称</th>
+            <th>分类</th>
+            <th>供应商</th>
             <th>操作</th>
         </tr>
     </thead>
@@ -16,6 +18,8 @@
         <tr>
             <td data-bind="text: Id"></td>
             <td data-bind="text: Name"></td>
+            <td data-bind="text: Category.Name"></td>
+            <td data-bind="text: Supplier.Name"></td>
             <td>
                 <a href="javascript:" data-bind="click:$root.edit">修改</a> / <a href="javascript:" data-bind="click:$root.remove">删除</a>
             </td>
@@ -25,16 +29,14 @@
 @section script
 {
     <script>
-
-        var searchUrl = apiUri + "Suppliers";
-        //宣告一个ProdsData的JSON对象数组变量
+        var searchUrl = apiUri + "Products?$select=Id,Name&$expand=Supplier($select=Name),Category($select=Name)";
+       // var searchUrl = apiUri + "Products?$select=Name,Supplier&$expand=Supplier";
+        //$select=Name,Supplier&$expand=Supplier
         var ProdsData = [];
-        //宣告一个vmProd的JSON变量
         var vmProd = {
-            //宣告有个别名为oProds的子对象，指向ko.observableArray(ProodsData)
             oProds: ko.observableArray(ProdsData),
             edit: function(Supplier) {
-                window.location.href = '/Knockout/Supplier/Edit?id =' + Supplier.Id
+                window.location.href = '/Knockout/Products/Edit?id =' + Supplier.Id
             },
             remove: function(Supplier) {
                 $.ajax({
@@ -51,14 +53,17 @@
         ko.applyBindings(vmProd);
         //加载列表
         loadList();
-
         function loadList() {
             var requestUrl = searchUrl;
-            //var PageSize = 2; var PageIndex = 1; var skipNum = (PageIndex - 1) * PageSize;
-            var name = $("#name").val().trim();
-            if (name != '') {
-                //requestUrl = searchUrl + "?$filter=Name eq '" + name + "'";
-                requestUrl = searchUrl + "?$filter=contains(Name,'"+name+"')";
+            var supplierName = $("#supplierName").val().trim();
+            var productName = $("#productName").val().trim();
+             
+            if (productName != '') {
+               
+                requestUrl = searchUrl + "&$filter=contains(Name,'" + productName + "') "
+            }
+            if (supplierName != '') {
+                searchUrl = searchUrl + ",Supplier($filter=contains(Name,'" + supplierName + "'))"
             }
             $.ajax({
                 type: "GET",
@@ -68,11 +73,6 @@
             }).error(function(jqXHR) {
                 alert(eval("(" + jqXHR.responseText + ")").error.message);
             });
-            //$.get(strURL, null, function (oProdsData, status, xhr) {
-            //    //将取得的对象及合，指定到ViewModel中的oProds别名
-            //    //(ViewModel中，将从震裂取得资料，转给oProds)
-            //    vmProd.oProds(oProdsData);
-            //});
         }
 
         $("#sreachBtn").click(function () {

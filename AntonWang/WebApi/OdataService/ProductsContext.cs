@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using ProductOdata.Models;
+using OdataService.Models;
 using ProductOdata.Migrations;
 
 namespace ProductOdata
@@ -21,6 +21,8 @@ namespace ProductOdata
         public DbSet<Supplier> Suppliers { get; set; }
         // New code:
         public DbSet<ProductRating> Ratings { get; set; }
+
+        public DbSet<Category> Categories{ get; set; }
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿
 using System.Net.Http.Formatting;
-using ProductOdata.Models;
+using OdataService.Models;
 using System.Web.Http;
 using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
@@ -16,6 +16,8 @@ namespace ProductOdata
             config.EnableCors(cors);
 
             ODataModelBuilder builder = new ODataConventionModelBuilder();
+
+            builder.EntitySet<Category>("Categories");
             builder.EntitySet<Product>("Products");
             // New code:
             builder.Namespace = "ProductService";
@@ -27,7 +29,7 @@ namespace ProductOdata
             builder.EntitySet<Supplier>("Suppliers");
             config.MapODataServiceRoute("ODataRoute", null, builder.GetEdmModel());
 
-            // New code:
+           
             builder.Namespace = "ProductService";
             builder.EntityType<Product>()
                 .Action("Rate")

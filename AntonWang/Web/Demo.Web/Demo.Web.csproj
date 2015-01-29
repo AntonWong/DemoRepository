@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Knockout\Controllers\ProductController.cs" />
     <Compile Include="Areas\Knockout\Controllers\SupplierController.cs" />
     <Compile Include="Areas\Knockout\KnockoutAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -148,7 +149,9 @@
     </Content>
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Areas\Knockout\Views\Product\Index.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

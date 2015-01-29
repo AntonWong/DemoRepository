@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Web;
+using OdataService.Models;
 using ProductOdata.Migrations;
-using ProductOdata.Models;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -11,11 +11,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.OData;
 using Tools;
-using System.Web.Http.Cors;
 
 namespace ProductOdata.Controllers
 {
-    [EnableCors(origins: "http://localhost:5027/", headers: "*", methods: "*")]
     public class ProductsController : ODataController
     {
         ProductsContext db = new ProductsContext();
@@ -29,12 +27,13 @@ namespace ProductOdata.Controllers
         {
             return db.Products;
         }
-
+      
 
         [EnableQuery]
         public SingleResult<Product> Get([FromODataUri] int key)
         {
             IQueryable<Product> result = db.Products.Where(p => p.Id == key);
+           
             return SingleResult.Create(result);
         }
         
@@ -45,7 +44,11 @@ namespace ProductOdata.Controllers
             var result = db.Products.Where(m => m.Id == key).Select(m => m.Supplier);
             return SingleResult.Create(result);
         }
-
+        //[EnableQuery]
+        //public IQueryable<Product> GetProducts([FromODataUri] int key)
+        //{
+        //    return db.Suppliers.Where(m => m.Id.Equals(key)).SelectMany(m => m.Products);
+        //}
         public HttpResponseMessage Post(Product product)
         {
             OperationResult result = new OperationResult(OperationResultType.Success, "message");

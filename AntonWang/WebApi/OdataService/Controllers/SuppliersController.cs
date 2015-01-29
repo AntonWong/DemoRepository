@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.OData;
-using ProductOdata.Models;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using System.Net.Http;
 using System.Net;
+using OdataService.Models;
 
 
 namespace ProductOdata.Controllers
@@ -28,6 +28,8 @@ namespace ProductOdata.Controllers
             IQueryable<Supplier> result = db.Suppliers.Where(p => p.Id == key);
             return SingleResult.Create(result);
         }
+
+
         public HttpResponseMessage Post(Supplier supplier)
         {
             var enrty = db.Entry(supplier);

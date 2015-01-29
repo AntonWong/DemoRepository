@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -117,19 +118,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers.cs" />
-    <Compile Include="Migrations\201501230826027_addtale.cs" />
-    <Compile Include="Migrations\201501230826027_addtale.Designer.cs">
-      <DependentUpon>201501230826027_addtale.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501230846047_addtale1.cs" />
-    <Compile Include="Migrations\201501230846047_addtale1.Designer.cs">
-      <DependentUpon>201501230846047_addtale1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501241059083_add.cs" />
-    <Compile Include="Migrations\201501241059083_add.Designer.cs">
-      <DependentUpon>201501241059083_add.cs</DependentUpon>
+    <Compile Include="Migrations\201501290536503_ADD.cs" />
+    <Compile Include="Migrations\201501290536503_ADD.Designer.cs">
+      <DependentUpon>201501290536503_ADD.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductService.cs" />
     <Compile Include="Models\Supplier.cs" />
@@ -145,16 +139,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501230826027_addtale.resx">
-      <DependentUpon>201501230826027_addtale.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501230846047_addtale1.resx">
-      <DependentUpon>201501230846047_addtale1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501241059083_add.resx">
-      <DependentUpon>201501241059083_add.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501290536503_ADD.resx">
+      <DependentUpon>201501290536503_ADD.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

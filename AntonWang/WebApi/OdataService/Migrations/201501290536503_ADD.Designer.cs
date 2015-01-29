@@ -7,13 +7,13 @@ namespace ProductOdata.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class addtale1 : IMigrationMetadata
+    public sealed partial class ADD : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addtale1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ADD));
         
         string IMigrationMetadata.Id
         {
-            get { return "201501230846047_addtale1"; }
+            get { return "201501290536503_ADD"; }
         }
         
         string IMigrationMetadata.Source
