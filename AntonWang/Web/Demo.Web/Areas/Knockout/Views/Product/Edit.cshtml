@@ -1,28 +1,28 @@
 ﻿@section title{<title>产品编辑</title>}
 
 
-<form class="form-horizontal" role="form">
-    <input  data-bind="value:product.Id" name="Id" type="hidden"/>
+<form id="form1" class="form-horizontal" role="form" >
+    <input  data-bind="value:Id" name="Id" type="hidden"/>
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">名称</label>
         <div class="col-sm-2">
             
 
-            <input data-bind="value:Name" type="text" class="form-control" id="name" placeholder="名称">
+            <input name="Name" data-bind="value:Name" type="text" class="form-control"  placeholder="名称">
         </div>
     </div>
     
     <div class="form-group">
         <label for="price" class="col-sm-2 control-label">价格</label>
         <div class="col-sm-2">
-            <input data-bind="value:Price" type="text" class="form-control" id="price" placeholder="价格">
+            <input name="Price" data-bind="value:Price" type="text" class="form-control" id="price" placeholder="价格">
         </div>
     </div>
     
-    <div class="form-group">
-        <label class="col-sm-2 control-label">分类</label>
+    @*<div class="form-group">
+         <label class="col-sm-2 control-label">分类</label>
         <!--方法1 -->
-        <div class="col-sm-2" data-bind="template: { name: 'choiceTmpl', foreach: choices, templateOptions: { selections: selectedChoices } }" >
+       <div class="col-sm-2" data-bind="template: { name: 'choiceTmpl', foreach: choices, templateOptions: { selections: selectedChoices } }" >
         </div>
         <script id="choiceTmpl" type="text/html">
             <label class="checkbox-inline">
@@ -30,36 +30,35 @@
                 <span data-bind="text: $data.Name"></span>
             </label>
         </script>
-    </div>
+    </div>*@
     <!--方法2 -->
-    @*<div class="form-group">
+    <div class="form-group">
         <label class="col-sm-2 control-label">分类</label>
-        <div class="col-sm-2" data-bind="foreach: choices, templateOptions: { selections: selectedChoices }" >
+        <div class="col-sm-2" data-bind="foreach: Categories" >
            <label class="checkbox-inline">
-                <input type="checkbox" data-bind="attr: { value: $data }, checked: $root.selectedChoices" />
-                <span data-bind="text: $data"></span>
+                <input name="Category.Id" type="checkbox" data-bind="attr: { value: $data.Id }, checked: $root.CategorieSelected" />
+                <span data-bind="text: $data.Name"></span>
             </label>
         </div>
-    </div>*@
+    </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">提供商</label>
-        <!--方法1 -->
-        @* <div class="col-sm-2" data-bind="foreach: choices, templateOptions: { selections: selectedChoices}" >
+        <label class="col-sm-2 control-label">供应商</label>
+         <div class="col-sm-2" data-bind="foreach: Suppliers" >
             <label class="checkbox-inline">
-                <input type="checkbox" data-bind="attr: { value: $data }, checked: $root.selectedChoices" />
-                <span data-bind="text: $data"></span>
+                <input name="Supplier.Id" type="checkbox" data-bind="attr: { value: $data.Id }, checked: $root.SupplierSelected" />
+                <span data-bind="text: $data.Name"></span>
             </label>
-        </div>*@
+        </div>
          
     </div>
  
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">保存</button>
+            <button type="button" class="btn btn-default"  data-bind="click:Save">保存</button>
         </div>
     </div>
 </form>
-    <div data-bind="text: ko.toJSON(selectedChoices)"></div>
+    <div data-bind="text: ko.toJSON(CategorieSelected)"></div>
 <div data-bind="text: selectedChoicesDelimited"></div>
 <div data-bind="text: name"></div>
 @section script
@@ -67,22 +66,30 @@
     <script type="text/javascript">
         var id = Request("id");
         var viewModel = {
+            Id: ko.observable(),
             Name: ko.observable(),
             Price: ko.observable(),
             product: ko.observable(),
             Categories: ko.observable(),
-            choices: [{ Id: "1", Name: "one" }, { Id: "2", Name: "two" }],//["one", "two", "three", "four", "five"],
-            selectedChoices: ko.observableArray(["1", "2"])
+            CategorieSelected: ko.observableArray(),
+            
+            Suppliers: ko.observable(),
+            SupplierSelected: ko.observableArray(),
+            choices: ko.observable(),// [{ Id: "1", Name: "one" }, { Id: "2", Name: "two" }],//["one", "two", "three", "four", "five"],
+            selectedChoices: ko.observableArray(["1", "2"]),
         };
         viewModel.selectedChoicesDelimited = ko.computed(function() {
             return this.selectedChoices().join(",");
         }, viewModel);
         ko.applyBindings(viewModel);
+        if (id != "") {
+            pruductList();
+        }
         $.ajax({
             type: "GET",
             url: apiUri + "Categories"
         }).done(function(data) {
-            viewModel.Name(data);
+             viewModel.Categories(data.value);
         }).error(function(jqXHR) {
             alert(eval("(" + jqXHR.responseText + ")").error.message);
         });
@@ -90,24 +97,38 @@
             type: "GET",
             url: apiUri + "Suppliers"
         }).done(function(data) {
-            // vmProd.oProds(data.value);
+            viewModel.Suppliers(data.value);
         }).error(function(jqXHR) {
             alert(eval("(" + jqXHR.responseText + ")").error.message);
         });
-        $.ajax({
-            type: "GET",
-            url: apiUri + "Products(" + id + ")"
-        }).done(function(data) {
-            viewModel.Name(data.Name);
-            viewModel.Price(data.Price);
+       
 
-
-            // alert(viewModel.product.Name);
-
-            // vmProd.oProds(data.value);
-        }).error(function(jqXHR) {
-            alert(eval("(" + jqXHR.responseText + ")").error.message);
-        });
+        function pruductList() {
+            $.ajax({
+                type: "GET",
+                url: apiUri + "Products(" + id + ")"
+            }).done(function (data) {
+                viewModel.Id(data.Id);
+                viewModel.Name(data.Name);
+                viewModel.Price(data.Price);
+                viewModel.CategorieSelected(new Array(data.CategoryId.toString()));//new Array("1")
+                viewModel.SupplierSelected(new Array(data.SupplierId.toString()));
+            }).error(function (jqXHR) {
+                alert(eval("(" + jqXHR.responseText + ")").error.message);
+            });
+        }
+        //保存
+        function Save() {
+            $.ajax({
+                data: $("#form1").serialize(),
+                type: "Post",
+                url: apiUri + "Products"
+            }).done(function (data) {
+               
+            }).error(function (jqXHR, textStatus, errorThrown) {
+                alert(eval("(" + jqXHR.responseText + ")").error.message);//+ " ;textStatus:" + textStatus + ";errorThrown:" + errorThrown
+            });
+        }
     </script>
 }
      
