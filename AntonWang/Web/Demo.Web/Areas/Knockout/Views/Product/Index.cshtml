@@ -30,7 +30,7 @@
 @section script
 {
     <script>
-        var searchUrl = apiUri + "Products?$select=Id,Name&$expand=Supplier($select=Name),Category($select=Name)";
+        var searchUrl = apiUri + "Products?$select=Id,Name&$expand=Supplier($select=Name),Category($select=Name)&$filter=1 eq 1 ";
        // var searchUrl = apiUri + "Products?$select=Name,Supplier&$expand=Supplier";
         //$select=Name,Supplier&$expand=Supplier
         
@@ -59,10 +59,10 @@
             var supplierName = $("#supplierName").val().trim();
             var productName = $("#productName").val().trim();
             if (productName != '') {
-                requestUrl = searchUrl + "&$filter=contains(Name,'" + productName + "') "
+                requestUrl = searchUrl + "and contains(Name,'" + productName + "') "
             }
             if (supplierName != '') {
-                searchUrl = searchUrl + ",Supplier($filter=contains(Name,'" + supplierName + "'))"
+                requestUrl = requestUrl + "and contains(Supplier/Name,'" + supplierName + "')"
             }
             $.ajax({
                 type: "GET",
