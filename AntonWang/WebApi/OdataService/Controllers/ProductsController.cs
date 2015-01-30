@@ -44,15 +44,10 @@ namespace ProductOdata.Controllers
             var result = db.Products.Where(m => m.Id == key).Select(m => m.Supplier);
             return SingleResult.Create(result);
         }
-        //[EnableQuery]
-        //public IQueryable<Product> GetProducts([FromODataUri] int key)
-        //{
-        //    return db.Suppliers.Where(m => m.Id.Equals(key)).SelectMany(m => m.Products);
-        //}
         public HttpResponseMessage Post(Product product)
         {
             OperationResult result = new OperationResult(OperationResultType.Success, "message");
-            string message = string.Format("productId:{0},productName:{1}，price:{2},categoryId:{3},SupplierId:{4}",
+            string message = string.Format("详细信息=> productId:{0},productName:{1}，price:{2},categoryId:{3},SupplierId:{4}",
                 product.Id, product.Name, product.Price,
                 product.Category == null ? 0 : product.Category.Id, product.Supplier == null ? 0 : product.Supplier.Id);
             return Request.CreateResponse(HttpStatusCode.OK, message);
