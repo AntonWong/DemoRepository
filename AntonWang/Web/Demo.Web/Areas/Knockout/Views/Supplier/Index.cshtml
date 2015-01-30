@@ -27,12 +27,11 @@
     <script>
 
         var searchUrl = apiUri + "Suppliers";
-        //宣告一个ProdsData的JSON对象数组变量
-        var ProdsData = [];
+        
         //宣告一个vmProd的JSON变量
         var vmProd = {
             //宣告有个别名为oProds的子对象，指向ko.observableArray(ProodsData)
-            oProds: ko.observableArray(ProdsData),
+            oProds: ko.observableArray(),
             edit: function(Supplier) {
                 window.location.href = '/Knockout/Supplier/Edit?id =' + Supplier.Id
             },

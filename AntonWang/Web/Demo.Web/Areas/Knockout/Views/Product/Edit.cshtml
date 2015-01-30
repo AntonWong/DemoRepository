@@ -1,0 +1,113 @@
+﻿@section title{<title>产品编辑</title>}
+
+
+<form class="form-horizontal" role="form">
+    <input  data-bind="value:product.Id" name="Id" type="hidden"/>
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">名称</label>
+        <div class="col-sm-2">
+            
+
+            <input data-bind="value:Name" type="text" class="form-control" id="name" placeholder="名称">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="price" class="col-sm-2 control-label">价格</label>
+        <div class="col-sm-2">
+            <input data-bind="value:Price" type="text" class="form-control" id="price" placeholder="价格">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-sm-2 control-label">分类</label>
+        <!--方法1 -->
+        <div class="col-sm-2" data-bind="template: { name: 'choiceTmpl', foreach: choices, templateOptions: { selections: selectedChoices } }" >
+        </div>
+        <script id="choiceTmpl" type="text/html">
+            <label class="checkbox-inline">
+                <input type="checkbox" data-bind="attr: { value: $data.Id }, checked: $root.selectedChoices" />
+                <span data-bind="text: $data.Name"></span>
+            </label>
+        </script>
+    </div>
+    <!--方法2 -->
+    @*<div class="form-group">
+        <label class="col-sm-2 control-label">分类</label>
+        <div class="col-sm-2" data-bind="foreach: choices, templateOptions: { selections: selectedChoices }" >
+           <label class="checkbox-inline">
+                <input type="checkbox" data-bind="attr: { value: $data }, checked: $root.selectedChoices" />
+                <span data-bind="text: $data"></span>
+            </label>
+        </div>
+    </div>*@
+    <div class="form-group">
+        <label class="col-sm-2 control-label">提供商</label>
+        <!--方法1 -->
+        @* <div class="col-sm-2" data-bind="foreach: choices, templateOptions: { selections: selectedChoices}" >
+            <label class="checkbox-inline">
+                <input type="checkbox" data-bind="attr: { value: $data }, checked: $root.selectedChoices" />
+                <span data-bind="text: $data"></span>
+            </label>
+        </div>*@
+         
+    </div>
+ 
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">保存</button>
+        </div>
+    </div>
+</form>
+    <div data-bind="text: ko.toJSON(selectedChoices)"></div>
+<div data-bind="text: selectedChoicesDelimited"></div>
+<div data-bind="text: name"></div>
+@section script
+{
+    <script type="text/javascript">
+        var id = Request("id");
+        var viewModel = {
+            Name: ko.observable(),
+            Price: ko.observable(),
+            product: ko.observable(),
+            Categories: ko.observable(),
+            choices: [{ Id: "1", Name: "one" }, { Id: "2", Name: "two" }],//["one", "two", "three", "four", "five"],
+            selectedChoices: ko.observableArray(["1", "2"])
+        };
+        viewModel.selectedChoicesDelimited = ko.computed(function() {
+            return this.selectedChoices().join(",");
+        }, viewModel);
+        ko.applyBindings(viewModel);
+        $.ajax({
+            type: "GET",
+            url: apiUri + "Categories"
+        }).done(function(data) {
+            viewModel.Name(data);
+        }).error(function(jqXHR) {
+            alert(eval("(" + jqXHR.responseText + ")").error.message);
+        });
+        $.ajax({
+            type: "GET",
+            url: apiUri + "Suppliers"
+        }).done(function(data) {
+            // vmProd.oProds(data.value);
+        }).error(function(jqXHR) {
+            alert(eval("(" + jqXHR.responseText + ")").error.message);
+        });
+        $.ajax({
+            type: "GET",
+            url: apiUri + "Products(" + id + ")"
+        }).done(function(data) {
+            viewModel.Name(data.Name);
+            viewModel.Price(data.Price);
+
+
+            // alert(viewModel.product.Name);
+
+            // vmProd.oProds(data.value);
+        }).error(function(jqXHR) {
+            alert(eval("(" + jqXHR.responseText + ")").error.message);
+        });
+    </script>
+}
+     

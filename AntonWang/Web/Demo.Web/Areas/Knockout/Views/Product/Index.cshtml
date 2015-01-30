@@ -4,6 +4,7 @@
     产品名称：<input id="productName" type="text" class="span2 search-query"> 
     <button id="sreachBtn" type="submit" class="btn">搜索</button>
 </div>
+ <a href="/Knockout/Product/Edit">添加</a>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -32,11 +33,11 @@
         var searchUrl = apiUri + "Products?$select=Id,Name&$expand=Supplier($select=Name),Category($select=Name)";
        // var searchUrl = apiUri + "Products?$select=Name,Supplier&$expand=Supplier";
         //$select=Name,Supplier&$expand=Supplier
-        var ProdsData = [];
+        
         var vmProd = {
-            oProds: ko.observableArray(ProdsData),
+            oProds: ko.observableArray(),
             edit: function(Supplier) {
-                window.location.href = '/Knockout/Products/Edit?id =' + Supplier.Id
+                window.location.href = '/Knockout/Product/Edit?id=' + Supplier.Id
             },
             remove: function(Supplier) {
                 $.ajax({
@@ -57,9 +58,7 @@
             var requestUrl = searchUrl;
             var supplierName = $("#supplierName").val().trim();
             var productName = $("#productName").val().trim();
-             
             if (productName != '') {
-               
                 requestUrl = searchUrl + "&$filter=contains(Name,'" + productName + "') "
             }
             if (supplierName != '') {

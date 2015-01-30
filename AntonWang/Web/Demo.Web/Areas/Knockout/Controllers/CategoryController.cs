@@ -6,17 +6,12 @@ using System.Web.Mvc;
 
 namespace Demo.Web.Areas.Knockout.Controllers
 {
-    public class ProductController : Controller
+    public class CategoryController : Controller
     {
         //
-        // GET: /Knockout/Product/
+        // GET: /Knockout/Category/
 
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult Edit()
         {
             return View();
         }
