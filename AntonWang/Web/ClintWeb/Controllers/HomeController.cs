@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ClientWeb.UploadFileService;
 
 namespace ClientWeb.Controllers
 {
@@ -12,7 +14,9 @@ namespace ClientWeb.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            return View();
+            UploadFileService.UploadServiceClient uploadService = new UploadServiceClient();
+            string result = uploadService.UploadPhotoInfo(new MemoryStream());
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 	}
 }

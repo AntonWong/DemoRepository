@@ -1,2 +1,2 @@
 ﻿<%@ ServiceHost Language="C#" Debug="true" 
-    Service="WcfServiceWeb.Services.UploadFile"  %>
+    Service="WcfServiceWeb.Services.UploadService"  %>
