@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ZipHelper.cs" />
     <Compile Include="CopyProperty.cs" />
     <Compile Include="ExpressionExtendsion.cs" />
     <Compile Include="FileIO.cs" />

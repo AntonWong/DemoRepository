@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Web
+# Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConsole", "MyConsole\MyConsole.csproj", "{A29BCA91-8562-47F9-8233-AEDABB8EA2CD}"
@@ -38,7 +38,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Web", "Web\Demo.Web\De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdataService", "WebApi\OdataService\OdataService.csproj", "{5D1CE5FA-48C3-425C-B37E-263A5BA069BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceWeb", "Web\WcfServiceWeb\WcfServiceWeb.csproj", "{93CA63CD-F1B4-40E5-815C-8FA76D10EF7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClintWeb", "Web\ClintWeb\ClintWeb.csproj", "{F3120DD0-172B-4376-9ED4-35DDA50664BB}"
+EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -92,6 +100,14 @@ Global
 		{5D1CE5FA-48C3-425C-B37E-263A5BA069BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D1CE5FA-48C3-425C-B37E-263A5BA069BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D1CE5FA-48C3-425C-B37E-263A5BA069BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93CA63CD-F1B4-40E5-815C-8FA76D10EF7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93CA63CD-F1B4-40E5-815C-8FA76D10EF7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93CA63CD-F1B4-40E5-815C-8FA76D10EF7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93CA63CD-F1B4-40E5-815C-8FA76D10EF7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3120DD0-172B-4376-9ED4-35DDA50664BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3120DD0-172B-4376-9ED4-35DDA50664BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3120DD0-172B-4376-9ED4-35DDA50664BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3120DD0-172B-4376-9ED4-35DDA50664BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,12 +124,7 @@ Global
 		{A9C398A6-E41A-4C34-9FCE-6B7982FB53CA} = {7F7308EA-7356-4991-99A3-EC153EB536B6}
 		{84A3E816-7AF4-4860-80FC-412607502BAC} = {7F7308EA-7356-4991-99A3-EC153EB536B6}
 		{C5D6BEC6-B8BB-474F-98B5-B0CF91888C52} = {EB6059A2-9390-4B1C-9F45-9FC53E4AE711}
-	EndGlobalSection
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
+		{93CA63CD-F1B4-40E5-815C-8FA76D10EF7A} = {EB6059A2-9390-4B1C-9F45-9FC53E4AE711}
+		{F3120DD0-172B-4376-9ED4-35DDA50664BB} = {EB6059A2-9390-4B1C-9F45-9FC53E4AE711}
 	EndGlobalSection
 EndGlobal
