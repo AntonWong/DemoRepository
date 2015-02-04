@@ -40,7 +40,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdataService", "WebApi\Odat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceWeb", "Web\WcfServiceWeb\WcfServiceWeb.csproj", "{93CA63CD-F1B4-40E5-815C-8FA76D10EF7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClintWeb", "Web\ClintWeb\ClintWeb.csproj", "{F3120DD0-172B-4376-9ED4-35DDA50664BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientWeb", "Web\ClintWeb\ClientWeb.csproj", "{F3120DD0-172B-4376-9ED4-35DDA50664BB}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
