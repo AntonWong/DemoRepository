@@ -18,6 +18,8 @@ namespace ClientWeb.Controllers
            string str2 = System.IO.File.ReadAllText(Server.MapPath(@"~/content/aaaa.txt"));
             var bytesTemp = Encoding.UTF8.GetBytes(str2);
            var compressBytes = ZipHelper.Compress(str2);
+           int a = bytesTemp.Length;
+           int b = compressBytes.Length;
            var stream = streamByteHelper.BytesToStream(compressBytes);
            var uploadService = new UploadServiceClient();
            string result = uploadService.Decompress(stream);

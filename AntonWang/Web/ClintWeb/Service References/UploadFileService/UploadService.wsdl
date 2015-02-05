@@ -20,6 +20,12 @@
   <wsdl:message name="IUploadService_Decompress_OutputMessage">
     <wsdl:part name="parameters" element="tns:DecompressResponse" />
   </wsdl:message>
+  <wsdl:message name="IUploadService_MessageHeader_InputMessage">
+    <wsdl:part name="parameters" element="tns:MessageHeader" />
+  </wsdl:message>
+  <wsdl:message name="IUploadService_MessageHeader_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MessageHeaderResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUploadService">
     <wsdl:operation name="UploadPhotoInfo">
       <wsdl:input wsaw:Action="http://HsutonWong.com/IUploadService/UploadPhotoInfo" message="tns:IUploadService_UploadPhotoInfo_InputMessage" />
@@ -28,6 +34,10 @@
     <wsdl:operation name="Decompress">
       <wsdl:input wsaw:Action="http://HsutonWong.com/IUploadService/Decompress" message="tns:IUploadService_Decompress_InputMessage" />
       <wsdl:output wsaw:Action="http://HsutonWong.com/IUploadService/DecompressResponse" message="tns:IUploadService_Decompress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MessageHeader">
+      <wsdl:input wsaw:Action="http://HsutonWong.com/IUploadService/MessageHeader" message="tns:IUploadService_MessageHeader_InputMessage" />
+      <wsdl:output wsaw:Action="http://HsutonWong.com/IUploadService/MessageHeaderResponse" message="tns:IUploadService_MessageHeader_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="UploadService">
