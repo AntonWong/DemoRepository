@@ -102,10 +102,9 @@ namespace Tools
             bw.Close();
             fs.Close();
         }
-        public void StreamToFile(byte[] bytes, string fileName)
+        public void ByteToFile(byte[] bytes, string fileName)
         {
             MemoryStream ms = new MemoryStream(bytes);
-
             FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
             fs.Write(bytes, 0, bytes.Length);
              fs.Close();

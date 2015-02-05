@@ -13,6 +13,7 @@ namespace Tools
             using (GZipStream zip = new GZipStream(ms, CompressionMode.Compress, true))
             {
                 zip.Write(bytes, 0, bytes.Length);
+      
             }
             ms.Position = 0;
             //MemoryStream outStream = new MemoryStream();
@@ -26,7 +27,7 @@ namespace Tools
             return new MemoryStream(gzBuffer); 
         }
 
-        public static string Compress(string text)
+        public static byte[] Compress(string text)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(text);
             MemoryStream ms = new MemoryStream();
@@ -40,16 +41,17 @@ namespace Tools
 
             byte[] compressed = new byte[ms.Length];
             ms.Read(compressed, 0, compressed.Length);
-
+            //return compressed;
             byte[] gzBuffer = new byte[compressed.Length + 4];
+
             Buffer.BlockCopy(compressed, 0, gzBuffer, 4, compressed.Length);
             Buffer.BlockCopy(BitConverter.GetBytes(buffer.Length), 0, gzBuffer, 0, 4);
-            return Convert.ToBase64String(gzBuffer);
+            return gzBuffer;
         }
 
-        public static string Decompress(string compressedText)
+        public static byte[] Decompress(byte[] gzBuffer)
         {
-            byte[] gzBuffer = Convert.FromBase64String(compressedText);
+            //byte[] gzBuffer = Convert.FromBase64String(compressedText);
             using (MemoryStream ms = new MemoryStream())
             {
                 int msgLength = BitConverter.ToInt32(gzBuffer, 0);
@@ -62,8 +64,8 @@ namespace Tools
                 {
                     zip.Read(buffer, 0, buffer.Length);
                 }
-
-                return Encoding.UTF8.GetString(buffer);
+                return buffer;
+               // return Encoding.UTF8.GetString(buffer);
             }
         }
     }

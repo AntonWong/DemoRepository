@@ -14,10 +14,20 @@
   <wsdl:message name="IUploadService_UploadPhotoInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:UploadPhotoInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="IUploadService_Decompress_InputMessage">
+    <wsdl:part name="parameters" element="tns:Decompress" />
+  </wsdl:message>
+  <wsdl:message name="IUploadService_Decompress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DecompressResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUploadService">
     <wsdl:operation name="UploadPhotoInfo">
       <wsdl:input wsaw:Action="http://HsutonWong.com/IUploadService/UploadPhotoInfo" message="tns:IUploadService_UploadPhotoInfo_InputMessage" />
       <wsdl:output wsaw:Action="http://HsutonWong.com/IUploadService/UploadPhotoInfoResponse" message="tns:IUploadService_UploadPhotoInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Decompress">
+      <wsdl:input wsaw:Action="http://HsutonWong.com/IUploadService/Decompress" message="tns:IUploadService_Decompress_InputMessage" />
+      <wsdl:output wsaw:Action="http://HsutonWong.com/IUploadService/DecompressResponse" message="tns:IUploadService_Decompress_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="UploadService">

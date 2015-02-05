@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -29,7 +30,7 @@ namespace WcfServiceWeb.Services
             Array.Copy(bytes, 0, strArray, 0, 47);
             Array.Copy(bytes, 47, fileArray, 0, 42426);
              string strJson = Encoding.UTF8.GetString(strArray);
-            byteHelper.StreamToFile(fileArray,HttpContext.Current.Server.MapPath((@"~/Content/Img/123.png")));
+             byteHelper.ByteToFile(fileArray, HttpContext.Current.Server.MapPath((@"~/Content/Img/123.png")));
             //var jsonModel = JObject.Parse(strContent);
             //int ss = jsonModel.Count;
             //string strFileByte = jsonModel.GetValue("StrFileByte").ToString();
@@ -37,6 +38,17 @@ namespace WcfServiceWeb.Services
            // var upoadModel = Newtonsoft.Json.JsonConvert.DeserializeObject<UploadModel>(strContent);
             return strJson + " " + HttpContext.Current.Server.MapPath((@"~/Content/Img/123.png"));
 
+        }
+
+        public string Decompress(Stream stream)
+        {
+            StreamByteHelper byteHelper = new StreamByteHelper();
+            //压缩后的二进制
+            var bytes = byteHelper.GetByteArrayFromStream(stream);
+            //解压后的二进制 = 客户端源文件的二进制
+            var decompressBytes = ZipHelper.Decompress(bytes);
+            byteHelper.ByteToFile(decompressBytes, HttpContext.Current.Server.MapPath((@"~/Content/123.txt")));
+            return HttpContext.Current.Server.MapPath((@"~/Content/123.txt"));
         }
     }
 }

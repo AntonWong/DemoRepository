@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\aaaa.txt" />
     <Content Include="Content\Img\230651118403837.png" />
     <Content Include="Global.asax" />
     <None Include="Service References\UploadFileService\UploadFile.disco" />
@@ -102,7 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CompressController.cs" />
+    <Compile Include="Controllers\MessageHeaderController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

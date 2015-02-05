@@ -10,7 +10,7 @@ using Tools;
 
 namespace ClientWeb.Controllers
 {
-    public class HomeController : Controller
+    public class UploadController : Controller
     {
         //
         // GET: /Home/
@@ -18,7 +18,7 @@ namespace ClientWeb.Controllers
         {
             StreamByteHelper byteHelper = new StreamByteHelper();
             string strOut = "{FileName:'图片.png',Category:'彩图分类'}";
-            UploadFileService.UploadServiceClient uploadService = new UploadServiceClient();
+            var uploadService = new UploadServiceClient();
             byte[] fileBytes = byteHelper.FilteToBytes(Server.MapPath(@"~/Content/Img/230651118403837.png"));
             byte[] stringBytes = Encoding.UTF8.GetBytes(strOut);
             int strLength = stringBytes.Length; //35

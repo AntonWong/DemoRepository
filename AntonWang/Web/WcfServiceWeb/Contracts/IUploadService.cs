@@ -8,5 +8,12 @@ namespace WcfServiceWeb.Contracts
     {
         [OperationContract(Name = "UploadPhotoInfo")]
         string UploadPhotoInfo(Stream stream);
+
+        [OperationContract(Name = "Decompress")]
+        string Decompress(Stream stream);
+
     }
+
+   
+
 }

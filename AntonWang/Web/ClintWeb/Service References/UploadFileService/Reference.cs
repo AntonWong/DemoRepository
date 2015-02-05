@@ -20,6 +20,12 @@ namespace ClientWeb.UploadFileService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://HsutonWong.com/IUploadService/UploadPhotoInfo", ReplyAction="http://HsutonWong.com/IUploadService/UploadPhotoInfoResponse")]
         System.Threading.Tasks.Task<string> UploadPhotoInfoAsync(System.IO.Stream stream);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://HsutonWong.com/IUploadService/Decompress", ReplyAction="http://HsutonWong.com/IUploadService/DecompressResponse")]
+        string Decompress(System.IO.Stream stream);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://HsutonWong.com/IUploadService/Decompress", ReplyAction="http://HsutonWong.com/IUploadService/DecompressResponse")]
+        System.Threading.Tasks.Task<string> DecompressAsync(System.IO.Stream stream);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace ClientWeb.UploadFileService {
         
         public System.Threading.Tasks.Task<string> UploadPhotoInfoAsync(System.IO.Stream stream) {
             return base.Channel.UploadPhotoInfoAsync(stream);
+        }
+        
+        public string Decompress(System.IO.Stream stream) {
+            return base.Channel.Decompress(stream);
+        }
+        
+        public System.Threading.Tasks.Task<string> DecompressAsync(System.IO.Stream stream) {
+            return base.Channel.DecompressAsync(stream);
         }
     }
 }
