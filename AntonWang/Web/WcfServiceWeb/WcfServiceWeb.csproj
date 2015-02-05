@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Contracts\IUploadService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -117,7 +118,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Img\" />
-    <Folder Include="Contracts\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
