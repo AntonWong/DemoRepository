@@ -73,7 +73,7 @@
     <Compile Include="ZipHelper.cs" />
     <Compile Include="CopyProperty.cs" />
     <Compile Include="ExpressionExtendsion.cs" />
-    <Compile Include="FileIO.cs" />
+    <Compile Include="StreamByteHelper.cs" />
     <Compile Include="JsonpMediaTypeFormatter.cs" />
     <Compile Include="MetaWeblogAPI\IMetaWeblog.cs" />
     <Compile Include="MetaWeblogAPI\MetaWeblog.cs" />

@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Img\230651118403837.png" />
     <Content Include="Global.asax" />
     <None Include="Service References\UploadFileService\UploadFile.disco" />
     <None Include="Service References\UploadFileService\configuration91.svcinfo" />
@@ -135,6 +136,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\UploadFileService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Component\Tools\Tools.csproj">
+      <Project>{84A3E816-7AF4-4860-80FC-412607502BAC}</Project>
+      <Name>Tools</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
