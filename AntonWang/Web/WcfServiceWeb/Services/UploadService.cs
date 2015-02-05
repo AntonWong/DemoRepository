@@ -47,7 +47,7 @@ namespace WcfServiceWeb.Services
             //压缩后的二进制
             var bytes = byteHelper.GetByteArrayFromStream(stream);
             //解压后的二进制 = 客户端源文件的二进制
-            var decompressBytes = ZipHelper.Decompress(bytes);
+            var decompressBytes = Compress.UnZip(bytes);
             byteHelper.ByteToFile(decompressBytes, HttpContext.Current.Server.MapPath((@"~/Content/123.txt")));
             return HttpContext.Current.Server.MapPath((@"~/Content/123.txt"));
         }
