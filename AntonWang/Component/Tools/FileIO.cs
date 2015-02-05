@@ -25,6 +25,18 @@ namespace Tools
             return bytes;
         }
 
+        public byte[] FilteToBytes(string filePath)
+        {
+            byte[] arrFile; //先定义一个byte数组
+            //将指定的文件数据读取到 数组中
+            using (FileStream fs = new FileStream(filePath, FileMode.Open)) //path是文件的路径
+            {
+                arrFile = new byte[fs.Length];//定义这个byte[]数组的长度 为文件的length
+                fs.Read(arrFile, 0, arrFile.Length);//把fs文件读入到arrFile数组中，0是指偏移量，从0开始读，arrFile.length是指需要读的长度，也就是整个文件的长度
+            }
+            return arrFile;
+        }
+
         /// <summary> 
         /// 将 byte[] 转成 Stream 
         /// </summary> 
