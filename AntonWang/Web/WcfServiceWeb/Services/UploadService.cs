@@ -17,6 +17,7 @@ namespace WcfServiceWeb.Services
       
     public class UploadService : IUploadService
     {
+        
         public string UploadPhotoInfo(Stream stream)
         {
             StreamByteHelper byteHelper = new StreamByteHelper();
@@ -50,5 +51,22 @@ namespace WcfServiceWeb.Services
             byteHelper.ByteToFile(decompressBytes, HttpContext.Current.Server.MapPath((@"~/Content/123.txt")));
             return HttpContext.Current.Server.MapPath((@"~/Content/123.txt"));
         }
+
+        public string MessageHeader(Stream stream)
+        {
+            System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("utf-8");
+            string strJson = "";
+            int index = OperationContext.Current.IncomingMessageHeaders.FindHeader("JsonContent", "http://Hsuton.com");
+
+            if (index >= 0)
+            {
+                strJson = OperationContext.Current.IncomingMessageHeaders.GetHeader<string>(index).ToString();
+            }
+             StreamByteHelper streamByteHelper = new StreamByteHelper ();
+
+             byte[] buffer = streamByteHelper.GetByteArrayFromStream(stream);
+            string text = System.Text.Encoding.UTF8.GetString(buffer);
+            return "json内容:" + strJson + ",并且字节流中的数据为:" + text;
+         }
     }
 }
