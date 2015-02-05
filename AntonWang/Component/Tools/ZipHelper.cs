@@ -5,61 +5,37 @@ using System.Text;
 
 namespace Tools
 {
-    public class ZipHelper
+    /// <summary>
+    /// 压缩解压缩类
+    /// </summary>
+    public class Compress
     {
-        //public static Stream Compress(byte[] bytes)
-        //{
-        //    MemoryStream ms = new MemoryStream();
-        //    using (GZipStream zip = new GZipStream(ms, CompressionMode.Compress, true))
-        //    {
-        //        zip.Write(bytes, 0, bytes.Length);
-        //    }
-        //    ms.Position = 0;
-        //    byte[] compressed = new byte[ms.Length];
-        //    ms.Read(compressed, 0, compressed.Length);
 
-        //    byte[] gzBuffer = new byte[compressed.Length + 4];
-        //    Buffer.BlockCopy(compressed, 0, gzBuffer, 4, compressed.Length);
-        //    Buffer.BlockCopy(BitConverter.GetBytes(bytes.Length), 0, gzBuffer, 0, 4);
-        //    return new MemoryStream(gzBuffer); 
-        //}
-
-        public static byte[] Compress(string text)
+        public static byte[] Zip(byte[] sourceBytes)
         {
-            byte[] buffer = Encoding.UTF8.GetBytes(text);
-            MemoryStream ms = new MemoryStream();
-            using (GZipStream zip = new GZipStream(ms, CompressionMode.Compress, true))
+            using (MemoryStream mStream = new MemoryStream())
             {
-                zip.Write(buffer, 0, buffer.Length);
+                GZipStream gStream = new GZipStream(mStream, CompressionMode.Compress);
+                gStream.Write(sourceBytes, 0, sourceBytes.Length);
+                gStream.Close();
+                return mStream.ToArray();
             }
-            ms.Position = 0;
-            byte[] compressed = new byte[ms.Length];
-            ms.Read(compressed, 0, compressed.Length);
-            return compressed;
-            /*
-            byte[] gzBuffer = new byte[compressed.Length + 4];
-
-            Buffer.BlockCopy(compressed, 0, gzBuffer, 4, compressed.Length);
-            Buffer.BlockCopy(BitConverter.GetBytes(buffer.Length), 0, gzBuffer, 0, 4);
-            return gzBuffer;
-           */
         }
 
-        public static byte[] Decompress(byte[] gzBuffer)
+        public static byte[] UnZip(byte[] sourceBytes)
         {
-            using (MemoryStream ms = new MemoryStream())
+            using (MemoryStream mStream = new MemoryStream())
             {
-                int msgLength = BitConverter.ToInt32(gzBuffer, 0);
-                ms.Write(gzBuffer, 0, gzBuffer.Length );
-
-                byte[] buffer = new byte[msgLength];
-
-                ms.Position = 0;
-                using (GZipStream zip = new GZipStream(ms, CompressionMode.Decompress))
+                using (GZipStream gStream = new GZipStream(new MemoryStream(sourceBytes), CompressionMode.Decompress))
                 {
-                    zip.Read(buffer, 0, buffer.Length);
+                    int readBytes = 0;
+                    byte[] buffer = new byte[1024];
+                    while ((readBytes = gStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        mStream.Write(buffer, 0, readBytes);
+                    }
+                    return mStream.ToArray();
                 }
-                return buffer;
             }
         }
     }
