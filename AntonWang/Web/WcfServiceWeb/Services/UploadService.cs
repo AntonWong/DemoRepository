@@ -82,7 +82,9 @@ namespace WcfServiceWeb.Services
                 if (i + 1 != headMesaages.Count)
                     sourceIndex = arrayLength;
             }
-            return "json内容:" + strJson + ",文件地址:" + text;
+            return "json内容:" + strJson + ",文件地址:" + 
+                HttpContext.Current.Server.MapPath((@"~/Content/")+headMesaages[0].FileName)+"   "+
+                HttpContext.Current.Server.MapPath((@"~/Content/")+headMesaages[0].FileName);
          }
 
         public string UploadMultipleFiles(Stream stream)
