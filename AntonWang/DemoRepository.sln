@@ -1,10 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConsole", "MyConsole\MyConsole.csproj", "{A29BCA91-8562-47F9-8233-AEDABB8EA2CD}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "≤‚ ‘", "≤‚ ‘", "{9AB71A22-7CAA-4E6B-8E10-DC1B9E9EF346}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAi", "WebAi", "{17CD9A3D-1492-4F64-81D9-40BDD2C648C7}"
 EndProject

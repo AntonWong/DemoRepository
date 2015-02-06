@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Img\123.png" />
     <Content Include="Global.asax" />
     <Content Include="Svc\UploadFile.svc" />
     <Content Include="Web.config">
@@ -117,7 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Img\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>

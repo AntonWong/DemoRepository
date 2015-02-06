@@ -54,19 +54,47 @@ namespace WcfServiceWeb.Services
 
         public string MessageHeader(Stream stream)
         {
-            System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("utf-8");
             string strJson = "";
+            StreamByteHelper streamByteHelper = new StreamByteHelper();
             int index = OperationContext.Current.IncomingMessageHeaders.FindHeader("JsonContent", "http://Hsuton.com");
-
             if (index >= 0)
             {
-                strJson = OperationContext.Current.IncomingMessageHeaders.GetHeader<string>(index).ToString();
+                strJson = OperationContext.Current.IncomingMessageHeaders.GetHeader<string>(index);
             }
-             StreamByteHelper streamByteHelper = new StreamByteHelper ();
+            byte[] buffer = streamByteHelper.GetByteArrayFromStream(stream);
+            string text = Encoding.UTF8.GetString(buffer);
 
-             byte[] buffer = streamByteHelper.GetByteArrayFromStream(stream);
-            string text = System.Text.Encoding.UTF8.GetString(buffer);
-            return "json内容:" + strJson + ",并且字节流中的数据为:" + text;
+            var headMesaages  = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UploadModel>>(strJson);
+            //解压流
+            //压缩后的二进制
+            
+            //解压后的二进制 = 客户端源文件的二进制
+            var decompressBytes = Compress.UnZip(buffer);
+            int sourceIndex = 0;
+            for (int i = 0; i < headMesaages.Count; i++)
+            {
+                int arrayLength = headMesaages[i].FileByteLength;
+                Byte[] fileArray = new byte[arrayLength];
+                Array.Copy(decompressBytes, sourceIndex, fileArray, 0, arrayLength);
+                //Array.Copy(bytes, 0, strArray, 0, 47);
+                //Array.Copy(bytes, 47, fileArray, 0, 42426);
+                streamByteHelper.ByteToFile(fileArray, HttpContext.Current.Server.MapPath((@"~/Content/") + headMesaages[i].FileName));
+                if (i + 1 != headMesaages.Count)
+                    sourceIndex = arrayLength;
+            }
+            return "json内容:" + strJson + ",文件地址:" + text;
          }
+
+        public string UploadMultipleFiles(Stream stream)
+        {
+            string strJson = "";
+            int index = OperationContext.Current.IncomingMessageHeaders.FindHeader("JsonContent", "http://Hsuton.com");
+            if (index >= 0)
+            {
+                strJson = OperationContext.Current.IncomingMessageHeaders.GetHeader<string>(index);
+                var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UploadModel>>(strJson);
+            }
+            return "";
+        }
     }
 }

@@ -37,20 +37,20 @@ namespace Tools
             int bI;
             try
             {
-                using (MemoryStream memory = new MemoryStream())
-                {
-                    while ((bI = stream.ReadByte()) != -1)
-                    {
-                        memory.WriteByte(((byte)bI));
-                    }
-                    byte[] streamData = memory.ToArray();
+                //using (MemoryStream memory = new MemoryStream())
+                //{
+                //    while ((bI = stream.ReadByte()) != -1)
+                //    {
+                //        memory.WriteByte(((byte)bI));
+                //    }
+                //    byte[] streamData = memory.ToArray();
 
-                    return streamData;
-                }
+                //    return streamData;
+                //}
                 //也可用如下方式
-                //MemoryStream memory=new MemoryStream();
-                //stream.CopyTo(memory);
-                //return memory.ToArray();
+                MemoryStream memory = new MemoryStream();
+                stream.CopyTo(memory);
+                return memory.ToArray();
             }
             catch (Exception)
             {

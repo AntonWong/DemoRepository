@@ -86,7 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\aaaa.txt" />
-    <Content Include="Content\Img\230651118403837.png" />
+    <Content Include="Content\Img\B.png" />
+    <Content Include="Content\Img\A.jpg" />
     <Content Include="Global.asax" />
     <None Include="Service References\UploadFileService\UploadFile.disco" />
     <None Include="Service References\UploadFileService\configuration91.svcinfo" />
