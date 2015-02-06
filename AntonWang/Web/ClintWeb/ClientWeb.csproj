@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\aaaa.txt" />
+    <Content Include="Content\Img\123.png" />
     <Content Include="Content\Img\B.png" />
     <Content Include="Content\Img\A.jpg" />
     <Content Include="Global.asax" />
