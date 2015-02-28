@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+@model RoleManage.Models.Function
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Setfunction</title>
+    <script src="~/JavaScript/jquery-1.10.2.min.js"></script>
+    <script>
+        function RequestUrl(strName) {
+            var strHref = window.document.location.href;
+            var intPos = strHref.indexOf("?");
+            var strRight = strHref.substr(intPos + 1);
+            var arrTmp = strRight.split("&");
+            for (var i = 0; i < arrTmp.length; i++) {
+                var arrTemp = arrTmp[i].split("=");
+                if (arrTemp[0].toUpperCase() == strName.toUpperCase()) {
+                    return decodeURIComponent(arrTemp[1]);
+                }
+            }
+            return "";
+        }
+        
+        $(function() {
+            var menuId = RequestUrl("id");
+            $("#menuId").val(menuId);
+            $.getJSON("/System/FunctionList/" + menuId, function (data) {
+                $.each(data, function (i, item) {
+                    $("#functions").append(item.FunctionName + "  ");
+                })
+            });
+        })
+        
+    </script>
+</head>
+<body>
+    <div>
+      <div id="functions">
+                  功能项:
+            </div>
+        <form method="POST">
+            <input id="menuId" name="menuId" value=""/>
+            <table>
+                <tr>
+                    <td>ControllerName:</td>
+                    <td> @Html.TextBoxFor(m=>m.ControllerName)</td>
+                </tr>
+                <tr>
+                    <td>ActionName:</td>
+                    <td> @Html.TextBoxFor(m=>m.ActionName)</td>
+                </tr>
+                <tr>
+                    <td>FunctionName:</td>
+                    <td> @Html.TextBoxFor(m=>m.FunctionName)</td>
+                </tr>
+            </table>
+            <input type="submit" value="提交"/>
+        </form>
+    </div>
+</body>
+</html>

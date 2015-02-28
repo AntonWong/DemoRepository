@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+@model List<RoleManage.Models.ParentSubMenuView>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    @item.MenuName &nbsp;&nbsp;&nbsp;
+                    @foreach (var subMenu in item.Menus)
+                    {
+                        <a href ="/@item.ControllerName/@subMenu.ActionName">@subMenu.MenuName</a>   <a href="/system/setfunction?id=@subMenu.MenuId">模块功能设置</a> 
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</body>
+</html>
