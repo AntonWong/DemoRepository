@@ -16,5 +16,14 @@ namespace RoleManage.Controllers
             return View();
         }
 
+        public ActionResult Sing()
+        {
+            return Json("Sing");
+        }
+        public ActionResult Dance()
+        {
+            return Json("Dance");
+        }
+
     }
 }

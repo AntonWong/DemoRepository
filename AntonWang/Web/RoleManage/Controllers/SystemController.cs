@@ -20,7 +20,8 @@ namespace RoleManage.Controllers
         public ActionResult Setfunction(Function model)
         {
 
-            model.Menu = new Menu {MenuId = Convert.ToInt32(Request.Form["menuId"])};
+            int menuId = Convert.ToInt32(Request.Form["menuId"]);
+            model.Menu = _context.Menu.Where(s => s.MenuId == menuId).FirstOrDefault();
             _context.Function.Add(model);
             _context.SaveChanges();
             return View();
@@ -28,7 +29,7 @@ namespace RoleManage.Controllers
 
         public ActionResult FunctionList(int id)
         {
-            return Json(_context.Function.Select(s=>new{s.FunctionName}), JsonRequestBehavior.AllowGet);
+            return Json(_context.Function.Where(s=>s.MenuId==id).Select(s=>new{s.FunctionName}), JsonRequestBehavior.AllowGet);
         }
 
     }
