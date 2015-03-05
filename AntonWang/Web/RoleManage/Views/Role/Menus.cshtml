@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+@model List<RoleManage.Models.ParentSubMenuView>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Menus</title>
+   
+</head>
+    <body>
+
+        <form method="POST" action="/Role/SaveModuleMenu">
+            <input id="roleId" name="roleId" type="hidden"/>
+            所有的模块：
+            @foreach (var item in Model)
+            {
+                <input name="MenuId" value="@item.MenuId" type="checkbox"/>  @item.MenuName<text>-</text> 
+
+                foreach (var childMenu in item.Menus)
+                {
+                    <input name="MenuId" value="@childMenu.MenuId" type="checkbox"/> @(childMenu.MenuName +",")
+                }
+            }
+            <button type="submit">提交</button>
+            <hr/>
+        </form>
+    </body>
+     <script>
+         function RequestUrl(strName) {
+             var strHref = window.document.location.href;
+             var intPos = strHref.indexOf("?");
+             var strRight = strHref.substr(intPos + 1);
+             var arrTmp = strRight.split("&");
+             for (var i = 0; i < arrTmp.length; i++) {
+                 var arrTemp = arrTmp[i].split("=");
+                 if (arrTemp[0].toUpperCase() == strName.toUpperCase()) {
+                     return decodeURIComponent(arrTemp[1]);
+                 }
+             }
+             return "";
+         }
+
+         document.getElementById("roleId").value = RequestUrl("id");
+    </script>
+</html>

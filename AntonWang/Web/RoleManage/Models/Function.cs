@@ -11,7 +11,7 @@ namespace RoleManage.Models
         [Key]
         public int FunctionId { get; set; }
         public string FunctionName { get; set; }
-        public int ControllerName { get; set; }
+        public string ControllerName { get; set; }
         public string ActionName { get; set; }
         public int MenuId { get; set; }
         public virtual ICollection<Role> Roles { get; set; }

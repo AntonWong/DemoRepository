@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+@model List<RoleManage.Models.ParentSubMenuView>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SetRole</title>
+    <script src="~/JavaScript/jquery-1.10.2.min.js"></script>
+    <script>
+        function RequestUrl(strName) {
+            var strHref = window.document.location.href;
+            var intPos = strHref.indexOf("?");
+            var strRight = strHref.substr(intPos + 1);
+            var arrTmp = strRight.split("&");
+            for (var i = 0; i < arrTmp.length; i++) {
+                var arrTemp = arrTmp[i].split("=");
+                if (arrTemp[0].toUpperCase() == strName.toUpperCase()) {
+                    return decodeURIComponent(arrTemp[1]);
+                }
+            }
+            return "";
+        }
+        $(function() {
+            $("#moduleIframe").attr("src", "/Role/Menus?id=" + RequestUrl("id"));///
+
+        })
+    //$(function() {
+        //    $.getJSON("/Role/Menus", function (data) {
+        //        $.each(data, function(i, item) {
+        //            $("#module").append(item.MenuName);
+        //            $.each(item.Menus, function (j, childMenu) {
+        //                $("#module").append("-"+childMenu.MenuName);
+        //            });
+        //            $("#module").append("<br/>");
+        //        });
+        //    })
+        //})
+    </script>
+</head>
+<body>
+    <div>
+        已有的模块：
+        @foreach (var item in Model)
+        {
+            @item.MenuName<text>-</text> 
+
+            foreach (var childMenu in item.Menus)
+            {
+                @(childMenu.MenuName +",")
+            }
+        }
+        <hr/>
+       @* 所有模块：
+        <div id="module"></div>*@
+    </div>
+    
+    <iframe id="moduleIframe" src="" width="100%" height="100%"></iframe>
+</body>
+</html>

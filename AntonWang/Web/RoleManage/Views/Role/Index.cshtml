@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+@model List<RoleManage.Models.Role>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <table >
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.RoleName</td>
+                     <td><a href="setrole?id=@item.RoleId">设置</a></td>
+            </tr>
+            }
+            
+        </table>
+    </div>
+</body>
+</html>

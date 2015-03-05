@@ -18,7 +18,8 @@
                     @item.MenuName &nbsp;&nbsp;&nbsp;
                     @foreach (var subMenu in item.Menus)
                     {
-                        <a href ="/@item.ControllerName/@subMenu.ActionName">@subMenu.MenuName</a>   <a href="/system/setfunction?id=@subMenu.MenuId">模块功能设置</a> 
+                        <a href ="/@item.ControllerName/@subMenu.ActionName">@subMenu.MenuName</a>   <a href="/system/setfunction?id=@subMenu.MenuId">模块功能</a> 
+                        <a href=""></a>
                     }
                 </li>
             }
