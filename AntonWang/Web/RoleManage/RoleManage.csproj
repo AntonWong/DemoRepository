@@ -131,26 +131,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201502130836397_addd.cs" />
-    <Compile Include="Migrations\201502130836397_addd.Designer.cs">
-      <DependentUpon>201502130836397_addd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502130843260_addd1.cs" />
-    <Compile Include="Migrations\201502130843260_addd1.Designer.cs">
-      <DependentUpon>201502130843260_addd1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502130856050_addd11.cs" />
-    <Compile Include="Migrations\201502130856050_addd11.Designer.cs">
-      <DependentUpon>201502130856050_addd11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502130920421_addd2.cs" />
-    <Compile Include="Migrations\201502130920421_addd2.Designer.cs">
-      <DependentUpon>201502130920421_addd2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502280159233_add.cs" />
-    <Compile Include="Migrations\201502280159233_add.Designer.cs">
-      <DependentUpon>201502280159233_add.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Function.cs" />
     <Compile Include="Models\Menu.cs" />
@@ -181,23 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502130836397_addd.resx">
-      <DependentUpon>201502130836397_addd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502130843260_addd1.resx">
-      <DependentUpon>201502130843260_addd1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502130856050_addd11.resx">
-      <DependentUpon>201502130856050_addd11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502130920421_addd2.resx">
-      <DependentUpon>201502130920421_addd2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502280159233_add.resx">
-      <DependentUpon>201502280159233_add.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Menu\Index.cshtml" />
