@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Be.MikeBevers.Logging;
 using CSharp.Demo;
 using MyConsole.Models;
 using Tools;
@@ -14,14 +15,21 @@ namespace MyConsole
     {
         static void Main(string[] args)
         {
-            MapMain();
-            return;
-         }
+            LogInfo();
+        }
 
         public static void GetDelegateResut()
         {
             DelegateDemo.GetAction();
         }
+
+        #region log4net
+        public static void LogInfo()
+        {
+            ILogger loger = new Logger();
+            loger.WriteLog(typeof(Program),"操作日志");
+        }
+        #endregion
 
         #region AutoMapper
         /// <summary>

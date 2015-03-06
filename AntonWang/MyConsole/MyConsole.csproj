@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="configs\log4net.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +84,10 @@
     <ProjectReference Include="..\Knowledge\CSharp.Demo\CSharp.Demo.csproj">
       <Project>{8CC0C524-33AA-4B0E-B450-CACC92AB1B5B}</Project>
       <Name>CSharp.Demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logs\Logs.csproj">
+      <Project>{F5B30E08-F2C7-4917-8EAD-441822A17C02}</Project>
+      <Name>Logs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
